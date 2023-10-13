@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
-import "package:simole_ui/utils/emo_icon.dart";
+import "/utils/emo_icon.dart";
+import "/utils/exercise_tile.dart";
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,10 +15,15 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Colors.blue[600],
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.message), label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: ""),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.mark_email_unread),
+            label: "",
+          ),
         ],
       ),
       body: SafeArea(
@@ -149,24 +155,67 @@ class _HomeScreenState extends State<HomeScreen> {
 
 Widget bottomContainer = Expanded(
   child: Container(
-    decoration: const BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.only(
+    decoration: BoxDecoration(
+      color: Colors.grey.shade100,
+      borderRadius: const BorderRadius.only(
         topRight: Radius.circular(30),
         topLeft: Radius.circular(30),
       ),
     ),
     child: Column(
       children: [
-        const SizedBox(height: 10),
+        const SizedBox(height: 8),
         Center(
           child: Container(
-            height: 10,
-            width: 70,
+            height: 7,
+            width: 60,
             decoration: BoxDecoration(
-              color: Colors.red,
+              color: Colors.blue.shade200,
               borderRadius: BorderRadius.circular(10),
             ),
+          ),
+        ),
+        const Padding(
+          padding: EdgeInsets.only(top: 20.0, left: 30, right: 30),
+          child: Column(
+            children: [
+              // Excercise Heading
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Exercises',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  Icon(Icons.more_horiz),
+                ],
+              ),
+
+              // const SizedBox(height: 10),
+
+              // List of exercise
+              ExerciseTile(
+                color: Colors.orange,
+                title: 'Speaking Skills',
+                subTitle: '16 Exercises',
+                icon: Icons.favorite,
+              ),
+              ExerciseTile(
+                color: Colors.blue,
+                title: 'Reading Speed',
+                subTitle: '8 Exercises',
+                icon: Icons.person,
+              ),
+              ExerciseTile(
+                color: Colors.pink,
+                title: 'Writing Skills',
+                subTitle: '10 Exercises',
+                icon: Icons.book,
+              ),
+            ],
           ),
         ),
       ],
